@@ -1,0 +1,17 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelManager.cs">
+    <Files>
+      <File FileName="Assets\Scripts\ManualSwitchTriggerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AutoSwitchTriggerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelManager.cs" Line="50" Column="3" />
+      <File FileName="Assets\Scripts\InputManager.cs" Line="10" Column="36" />
+      <File FileName="Assets\Scripts\BulbController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SwitchController.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

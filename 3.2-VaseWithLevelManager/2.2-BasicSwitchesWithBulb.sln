@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{C74A77DE-5BC2-C7EC-6D5F-DFB960E6D27C}") = "2.2-BasicSwitchesWithBulb", "Assembly-CSharp.csproj", "{4C495BF6-D68F-A76E-A1BD-8C993951ADDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C495BF6-D68F-A76E-A1BD-8C993951ADDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C495BF6-D68F-A76E-A1BD-8C993951ADDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C495BF6-D68F-A76E-A1BD-8C993951ADDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C495BF6-D68F-A76E-A1BD-8C993951ADDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
