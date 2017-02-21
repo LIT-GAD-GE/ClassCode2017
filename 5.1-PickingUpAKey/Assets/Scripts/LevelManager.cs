@@ -14,7 +14,12 @@ public class LevelManager : MonoBehaviour {
 
 		if (keyPickedUp == false) {
 			// Ok, someone (we assume the hero) has collided with the key. Lets
-			// tell the Hero to add the key as a child
+			// tell the Hero to add the key as a child. Notice that I am passing theKey
+			// as an argument to the pickupKey function i.e. not only am I telling
+			// theHero to pickup the key (by calling the pickupKey function) but I am
+			// also giving theHero the key which I want it to pickup. While this may not be 
+			// so impressive now (as I only have one key), if I add more keys this will
+			// be handy
 			theHero.pickupKey (theKey);
 			keyPickedUp = true;
 		} else {

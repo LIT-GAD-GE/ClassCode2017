@@ -65,12 +65,12 @@ public class KeyController : MonoBehaviour {
 		theLevelManager.OnKeyTriggerEnter ();
 	}
 
-	public void pickup() {
+	public void OnPickup() {
 			pickupSFX.Play ();
 	}
 
 
-	public void drop() {
+	public void OnDrop() {
 			dropSFX.Play ();
 	}
 
