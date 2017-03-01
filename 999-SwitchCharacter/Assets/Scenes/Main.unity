@@ -235,7 +235,15 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 1a85e8c0aba2d5548b5e11c68c35f606, type: 2}
     - target: {fileID: 1000012424151942, guid: 386091493c290ce40897597b02ee5551, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013844772022, guid: 386091493c290ce40897597b02ee5551, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013844772022, guid: 386091493c290ce40897597b02ee5551, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000013497084858, guid: 386091493c290ce40897597b02ee5551, type: 2}
@@ -374,7 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theMultiHeroController: {fileID: 1098193361}
-  currentlyActiveHero: {fileID: 0}
+  currentlyActiveHero: {fileID: 1766156979}
 --- !u!1 &1298977636
 GameObject:
   m_ObjectHideFlags: 0
