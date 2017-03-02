@@ -3,19 +3,25 @@ using System.Collections;
 
 public class HeroController : MonoBehaviour {
 
-	public void pickupCollectable(CollectableController theCollectable){
+	public void pickupBomb(BombController theBomb){
 		
-		theCollectable.gameObject.transform.parent = transform;
+		theBomb.gameObject.transform.parent = transform;
 
-		theCollectable.gameObject.transform.localPosition = new Vector3 (0.5f, -0.5f, 0);
+		theBomb.gameObject.transform.localPosition = new Vector3 (0.5f, -0.5f, 0);
 
-		theCollectable.OnPickedUp();
+		theBomb.OnPickedUp();
 	}
 
-	public void dropCollectable(CollectableController theCollectable) {
+	public void dropBomb(BombController theBomb) {
 
-		theCollectable.gameObject.transform.parent = null;
+		theBomb.gameObject.transform.parent = null;
 
-		theCollectable.OnDropped ();
+		theBomb.OnDropped ();
+	}
+
+	public void explode() {
+		// I am just going to destroy the Hero gameobject. Really I should play some
+		// explosion animations and sounds etc
+		Destroy (gameObject);
 	}
 }

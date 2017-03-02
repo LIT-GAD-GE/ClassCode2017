@@ -90,6 +90,62 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &769879827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 769879828}
+  - 58: {fileID: 769879830}
+  - 114: {fileID: 769879829}
+  m_Layer: 0
+  m_Name: BombRadar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &769879828
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769879827}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1662340025}
+  m_RootOrder: 0
+--- !u!114 &769879829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769879827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165d4abb88dbd4141b82d1fd4e0a20a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theLevelManager: {fileID: 863639563}
+--- !u!58 &769879830
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769879827}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 12.12
 --- !u!1 &863639561
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +154,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 863639562}
+  - 114: {fileID: 863639563}
+  - 114: {fileID: 863639564}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -118,6 +176,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &863639563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 863639561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c117594837b9944fbb42b241163d2cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theHero: {fileID: 1223861569}
+  theBomb: {fileID: 1662340026}
+  HeroInBombRange: 0
+  bombPickedUp: 0
+--- !u!114 &863639564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 863639561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e462585c250ff4c8b7d3bbc8c0efc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theLevelManager: {fileID: 863639563}
 --- !u!1 &1012067803
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,9 +329,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212000011834507934, guid: 386091493c290ce40897597b02ee5551,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -368001507
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 386091493c290ce40897597b02ee5551, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1223861568 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012424151942, guid: 386091493c290ce40897597b02ee5551,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223861567}
+--- !u!114 &1223861569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1223861568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 162d79cb44608ab47953f794f1c1fa97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1588729990
 Prefab:
   m_ObjectHideFlags: 0
@@ -299,6 +405,7 @@ GameObject:
   - 4: {fileID: 1662340025}
   - 212: {fileID: 1662340024}
   - 61: {fileID: 1662340023}
+  - 114: {fileID: 1662340026}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bomb
@@ -347,7 +454,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1095993465
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fbc89ece420721b41b5997c3c6ceb329, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -363,6 +470,20 @@ Transform:
   m_LocalPosition: {x: -5.95, y: -3.01, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 769879828}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1662340026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1662340022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565a1a2c8925d544b85090f3e0b0f6fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theLevelManager: {fileID: 863639563}
+  floorYPosition: 0
