@@ -2,14 +2,9 @@
 using System.Collections;
 
 public class LevelManager : MonoBehaviour {
+	[SerializeField] CharacterController theHero;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void MoveCharacter(float hAxisValue, bool doCrouch, bool doJump) {
+		theHero.Move (hAxisValue, doCrouch, doJump);
 	}
 }
