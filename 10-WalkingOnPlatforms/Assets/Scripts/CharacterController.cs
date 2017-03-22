@@ -42,9 +42,20 @@ public class CharacterController : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject != gameObject)
-                m_Grounded = true;
+			if (colliders [i].gameObject != gameObject) {
+				
+				m_Grounded = true;
+
+				gameObject.transform.parent = colliders [i].gameObject.transform;
+
+			}
+			
         }
+
+		if (!m_Grounded) {
+			gameObject.transform.parent = null;
+		}
+
         m_Anim.SetBool("Ground", m_Grounded);
 
         // Set the vertical animation
@@ -94,6 +105,7 @@ public class CharacterController : MonoBehaviour
 			if (platformOverhead == true) {
 				doCrouch = true;
 			}
+
         }
 
         // Set whether or not the character is crouching in the animator
@@ -109,7 +121,7 @@ public class CharacterController : MonoBehaviour
             m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
             // Move the character
-            m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+			m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
             // If the input is moving the player right and the player is facing left...
             if (move > 0 && !m_FacingRight)

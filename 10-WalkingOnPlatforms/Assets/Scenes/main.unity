@@ -99,11 +99,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.45625
+      value: -6.02
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.55
+      value: 5.15
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_LocalPosition.z
@@ -111,15 +111,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_LocalRotation.w
@@ -127,7 +127,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6100000, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_Enabled
@@ -253,6 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HorizontalSpeed: 5
   HorizontalOffset: 5
+  currentVelocity: {x: 0, y: 0}
 --- !u!50 &566924453
 Rigidbody2D:
   serializedVersion: 2
@@ -261,11 +262,11 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 566924449}
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -386,7 +387,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!114 &761555635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +505,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013782069542, guid: 3d76195c3ad259346a08df615f1197ef, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1000012984882390, guid: 3d76195c3ad259346a08df615f1197ef, type: 2}
       propertyPath: m_Layer
@@ -618,11 +619,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011837893150, guid: f0f3527d0f8374e3aa877cfd45ef8dfd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -12.95
+      value: -13.22
       objectReference: {fileID: 0}
     - target: {fileID: 4000011837893150, guid: f0f3527d0f8374e3aa877cfd45ef8dfd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.17
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4000011837893150, guid: f0f3527d0f8374e3aa877cfd45ef8dfd, type: 2}
       propertyPath: m_LocalPosition.z

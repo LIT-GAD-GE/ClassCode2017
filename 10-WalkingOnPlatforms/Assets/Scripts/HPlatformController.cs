@@ -37,32 +37,37 @@ public class HPlatformController : MonoBehaviour {
 
 	private Rigidbody2D theRigidBody;
 	private Vector2 startingPosition;
-	private Vector2 rightVelocity;
-	private Vector2 leftVelocity;
+
+	public Vector2 currentVelocity;
+	private int direction = 1;
 
 	// Use this for initialization
 	void Awake () {
 		theRigidBody = GetComponent<Rigidbody2D> ();
 		startingPosition = theRigidBody.position;
 
-
-		rightVelocity = new Vector2 (HorizontalSpeed, 0);
-		leftVelocity = new Vector2 (-HorizontalSpeed, 0);
-
-		// Set the platform moving right
-		theRigidBody.velocity = rightVelocity;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		currentVelocity = theRigidBody.velocity;
+
+		Vector2 currentPos = theRigidBody.position;
+		currentPos.x = currentPos.x + ( (HorizontalSpeed * Time.deltaTime) * direction);
+		theRigidBody.position = currentPos;
+
 		if (theRigidBody.position.x >= startingPosition.x + HorizontalOffset) {
 			// ok we have gone all the way to the right, we need to start
 			// heading left
-			theRigidBody.velocity = leftVelocity;
+
+			direction *= -1;
+
 		} else if (theRigidBody.position.x <= startingPosition.x - HorizontalOffset) {
 			// ok we have gone all the way to the left, we need to start
 			// heading right
-			theRigidBody.velocity = rightVelocity;
+
+			direction *= -1;
+
 		}
 	}
 		
