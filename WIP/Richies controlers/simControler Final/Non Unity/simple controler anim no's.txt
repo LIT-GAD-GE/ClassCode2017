@@ -1,0 +1,34 @@
+walk 0 - 12
+
+idle 13 - 32
+
+jump 34 - 45
+
+crouch 45 - 51
+
+crouch walk 50 - 60
+
+crouch idle 60 - 81
+
+attack 82 - 101
+
+atack swipe  82 - 85
+
+
+jump tree
+
+min value -13 max value 5
+
+jump 11  
+
+-10.8
+-8.11
+-7.3
+-6.2
+-5.4
+-4.6
+-3.7
+-2.9
+-1.7
+-0.03
+2.16
