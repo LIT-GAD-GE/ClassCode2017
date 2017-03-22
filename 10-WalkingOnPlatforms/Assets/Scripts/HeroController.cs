@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class HeroController : MonoBehaviour
 {
 	/* 
 	 * Using the Attribute SerializeField before a private class variable declaration allows the variable

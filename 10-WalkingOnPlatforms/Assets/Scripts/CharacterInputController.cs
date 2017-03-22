@@ -3,15 +3,8 @@ using UnityEngine;
 
 public class CharacterInputController : MonoBehaviour
 {
-    private CharacterController m_Character;
 	[SerializeField] LevelManager theLevelManager;
     private bool m_Jump;
-
-
-    private void Awake()
-    {
-		m_Character = GetComponent<CharacterController>();
-    }
 
 
     private void Update()

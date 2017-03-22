@@ -35,7 +35,6 @@ public class HPlatformController : MonoBehaviour {
 	public float HorizontalSpeed;
 	public float HorizontalOffset;
 
-	private Rigidbody2D theRigidBody;
 	private Vector2 startingPosition;
 
 	public Vector2 currentVelocity;
@@ -43,26 +42,23 @@ public class HPlatformController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		theRigidBody = GetComponent<Rigidbody2D> ();
-		startingPosition = theRigidBody.position;
-
+		startingPosition = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		currentVelocity = theRigidBody.velocity;
 
-		Vector2 currentPos = theRigidBody.position;
+		Vector2 currentPos = transform.position;
 		currentPos.x = currentPos.x + ( (HorizontalSpeed * Time.deltaTime) * direction);
-		theRigidBody.position = currentPos;
+		transform.position = currentPos;
 
-		if (theRigidBody.position.x >= startingPosition.x + HorizontalOffset) {
+		if (transform.position.x >= startingPosition.x + HorizontalOffset) {
 			// ok we have gone all the way to the right, we need to start
 			// heading left
 
 			direction *= -1;
 
-		} else if (theRigidBody.position.x <= startingPosition.x - HorizontalOffset) {
+		} else if (transform.position.x <= startingPosition.x - HorizontalOffset) {
 			// ok we have gone all the way to the left, we need to start
 			// heading right
 

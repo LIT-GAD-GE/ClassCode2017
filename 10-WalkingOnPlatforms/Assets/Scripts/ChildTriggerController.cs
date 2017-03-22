@@ -2,13 +2,13 @@
 using System.Collections;
 
 public class ChildTriggerController : MonoBehaviour {
-	public CharacterController theCharacterController;
+	public HeroController theHeroController;
 
 	void OnTriggerEnter2D(Collider2D other) {
-		theCharacterController.OnChildTriggerEnter2D (this, other);
+		theHeroController.OnChildTriggerEnter2D (this, other);
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
-		theCharacterController.OnChildTriggerExit2D (this, other);
+		theHeroController.OnChildTriggerExit2D (this, other);
 	}
 }
