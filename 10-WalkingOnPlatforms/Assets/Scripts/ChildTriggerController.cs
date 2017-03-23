@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ChildTriggerController : MonoBehaviour {
-	public HeroController theHeroController;
+	public SimpleControler theHeroController;
 
 	void OnTriggerEnter2D(Collider2D other) {
 		theHeroController.OnChildTriggerEnter2D (this, other);

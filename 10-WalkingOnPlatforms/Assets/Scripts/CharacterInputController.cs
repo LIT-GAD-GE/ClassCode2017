@@ -4,27 +4,32 @@ using UnityEngine;
 public class CharacterInputController : MonoBehaviour
 {
 	[SerializeField] LevelManager theLevelManager;
-    private bool m_Jump;
+    private bool jump;
 
 
     private void Update()
     {
-        if (!m_Jump)
+		/*
+		 * I am checking if the Jump button is pressed in the Update function rather
+		 * than the FixedUpdate function as the Update function is called more frequently
+		 * and as such the Jump presses won't be missed.
+		 */
+		if (!jump)
         {
-            // Read the jump input in Update so button presses aren't missed.
-			m_Jump = Input.GetButtonDown("Jump");
+			jump = Input.GetButtonDown("Jump");
         }
     }
 
 
     private void FixedUpdate()
     {
-        // Read the inputs.
-		bool crouch = Input.GetKey(KeyCode.LeftShift);
-		float h = Input.GetAxis("Horizontal");
+		float hMovement = Input.GetAxis("Horizontal");
+
         // Pass all parameters to the character control script.
-		theLevelManager.MoveCharacter(h, crouch, m_Jump);
-        m_Jump = false;
+		theLevelManager.MoveCharacter(hMovement, jump);
+
+		// Reset the jump boolean
+		jump = false;
     }
 }
 
