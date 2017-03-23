@@ -28,12 +28,14 @@ public class SimpleControler : MonoBehaviour
 	 * inspector. 
 	 */
 	[SerializeField] private bool platformOverhead;
+	[SerializeField] private bool canMoveInAir;
 
 	void Awake ()
 	{
 
 		anim = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
+
 	}
 
 
@@ -145,10 +147,10 @@ public class SimpleControler : MonoBehaviour
 		anim.SetFloat ("vSpeed", rb.velocity.y);
 	}
 
-	public void Move(float hAxisValue, bool doJump) {
+	public void Move(float hAxisValue, bool doJump, bool doDuck) {
 
-		// Let's restrict movement to when the character is grounded
-		if (grounded) {
+		// The character can only move if grounded OR canMoveInAir is true
+		if (grounded || canMoveInAir) {
 			
 			// Let's make sure we are facing the right way
 			if (hAxisValue > 0 && !facingRight) {
@@ -157,8 +159,28 @@ public class SimpleControler : MonoBehaviour
 				Flip ();
 			}
 
+			// Create a variable that I will multiple speed by. By default this variable is
+			// set to 1 so multiplying it by speed will have no effect. However, if I am
+			// ducking I will set this variable to 0.33 so that my speed will be one third
+			// of what it normally is.
+			float duckSpeedMultiplier = 1.0f;
+
+			// You can only duck if grounded
+			if (grounded) {
+				if (!doDuck && anim.GetBool ("Crouch") && platformOverhead) {
+					doDuck = true;
+				}
+
+				// Trigger the crouch/duck animation
+				anim.SetBool ("Crouch", doDuck);
+
+				if (doDuck) {
+					duckSpeedMultiplier = 0.33f;
+				}
+			}
+
 			anim.SetFloat ("Speed", Mathf.Abs (hAxisValue));
-			rb.velocity = new Vector2 (hAxisValue * maxSpeed, rb.velocity.y); 
+			rb.velocity = new Vector2 (hAxisValue * maxSpeed * duckSpeedMultiplier, rb.velocity.y); 
 		}
 
 		if (grounded && doJump) {
@@ -166,6 +188,7 @@ public class SimpleControler : MonoBehaviour
 			anim.SetBool ("Ground", false);
 			rb.AddForce (new Vector2 (0f, jumpforce));
 		}
+			
 
 	}
 		
@@ -181,6 +204,10 @@ public class SimpleControler : MonoBehaviour
 		//apply it back to the local scale
 		transform.localScale = theScale;
 		//all together taking the world and fliping it 180 degrees
+	}
+
+	public void setCanMoveInAir(bool value) {
+		canMoveInAir = value;
 	}
 
 	/*
