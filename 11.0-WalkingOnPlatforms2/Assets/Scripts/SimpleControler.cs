@@ -20,22 +20,24 @@ public class SimpleControler : MonoBehaviour
 	private float move;
 	private Animator anim;
 	private Rigidbody2D rb;
-	private bool grounded = false;
+
 	private float groundRadious = 0.2f;
 
 	/*
 	 * Variables that have the [SerializeField] attribute before can be accessed via the
 	 * inspector. 
 	 */
+	[SerializeField] private bool grounded = false;
 	[SerializeField] private bool platformOverhead;
 	[SerializeField] private bool canMoveInAir;
+	[SerializeField] private bool touchingWall;
 
 	void Awake ()
 	{
 
 		anim = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
-
+		touchingWall = false;
 	}
 
 
@@ -144,25 +146,41 @@ public class SimpleControler : MonoBehaviour
 
 		anim.SetBool ("Ground", grounded);
 
-		anim.SetFloat ("vSpeed", rb.velocity.y);
+		if (!touchingWall) {
+			anim.SetFloat ("vSpeed", rb.velocity.y);
+		} else {
+			anim.SetFloat ("vSpeed", rb.velocity.y * -1);
+		}
 	}
 
-	public setGravity(float gravityValue) {
+	public void setGravity(float gravityValue) {
 		rb.gravityScale = gravityValue;
 	}
 
-	public void Move(float hAxisValue, float vAxisValue, bool doJump, bool doDuck, bool doClimb) {
+	public void Move(float hAxisValue, float vAxisValue, bool doJump, bool doDuck) {
 
 		float yVelocity;
 
-		if (doClimb) {
-			yVelocity = rb.velocity.y * vAxisValue * maxSpeed;
+		if (touchingWall) {
+			
+			// Let's make sure we are facing the right way
+			if (hAxisValue > 0 && !facingRight) {
+				Flip ();
+			} else if (hAxisValue < 0 && facingRight) {
+				Flip ();
+			}
+
+			yVelocity = vAxisValue * maxSpeed * 1.0f;
+
 		} else {
 			yVelocity = rb.velocity.y;
+
 		}
 
+		rb.velocity = new Vector2 (rb.velocity.x, yVelocity); 
+
 		// The character can only move if grounded OR canMoveInAir is true
-		if (grounded || canMoveInAir) {
+		if (grounded || canMoveInAir || touchingWall) {
 			
 			// Let's make sure we are facing the right way
 			if (hAxisValue > 0 && !facingRight) {
@@ -227,15 +245,31 @@ public class SimpleControler : MonoBehaviour
 	}
 
 	/*
-	 * The following two methods are called by the child object CeilingCheckCollider
+	 * The following two methods are called by the child objects CeilingCheckCollider and FrontCheckCollider
 	 */
 
 	public void OnChildTriggerEnter2D(ChildTriggerController childTrigger, Collider2D other) {
+		
+		Debug.Log ("OnChildTriggerExit2D: " + childTrigger.name + " collided with " + other.tag);
 
 		if (childTrigger.name == "CeilingCheckCollider") {
 
 			if (other.tag == "Platform") {
 				platformOverhead = true;
+			}
+
+		} else if (childTrigger.name == "FrontCheckCollider") {
+
+			// Ok the front of our character has collided with something. Was it a wall?
+
+			/* Please note that I am assuming that the character can always climb. If climbing depended
+			 * on some game rule e.g. you require a certain resource, then the FrontCheckCollider shouldn't 
+			 * be notifying this SimpleController (which is attached to the Hero) but rather it should be
+			 * notifying the LevelManager.
+			 */
+			if (other.tag == "StickPlate") {
+				touchingWall = true;
+				rb.gravityScale = 0.0f;
 			}
 		}
 	}
@@ -243,12 +277,21 @@ public class SimpleControler : MonoBehaviour
 
 	public void OnChildTriggerExit2D(ChildTriggerController childTrigger, Collider2D other) {
 
-		Debug.Log ("OnChildTriggerExit2D: " + childTrigger.name + " collided with " + other.tag);
+		Debug.Log ("OnChildTriggerExit2D: " + childTrigger.name + " un-collided with " + other.tag);
 
 		if (childTrigger.name == "CeilingCheckCollider") {
 
 			if (other.tag == "Platform") {
 				platformOverhead = false;
+			} 
+
+		} else if (childTrigger.name == "FrontCheckCollider") {
+
+			// Ok the front of our character has just UN collided with something. Was it a wall?
+
+			if (other.tag == "StickPlate") {
+				touchingWall = false;
+				rb.gravityScale = 3.0f;
 			}
 		}
 	}

@@ -14,11 +14,9 @@ public class LevelManager : MonoBehaviour {
 	[SerializeField] private float powerUpTime;
 	[SerializeField] private int numStars;
 	[SerializeField] private bool pause;
-	[SerializeField] private bool climbing;
 
 	void Awake() {
 		pause = false;
-		climbing = false;
 	}
 
 	public void MoveCharacter(float hAxisValue, float vAxisValue, bool doJump, bool doDuck) {
@@ -31,7 +29,7 @@ public class LevelManager : MonoBehaviour {
 			doDuck = false;
 		}
 
-		theHero.Move (hAxisValue, vAxisValue, doJump, doDuck, climbing);
+		theHero.Move (hAxisValue, vAxisValue, doJump, doDuck);
 	}
 
 	public void starCollected() {
@@ -94,10 +92,5 @@ public class LevelManager : MonoBehaviour {
 			Time.timeScale = 1.0f;
 		}
 	}
-
-	public void OnCharacterEnterWallTrigger(Collider2D other) {
-	}
-
-	public void OnCharacterExitWallTrigger(Collider2D other) {
-	}
+		
 }
