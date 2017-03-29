@@ -146,10 +146,14 @@ public class SimpleControler : MonoBehaviour
 
 		anim.SetBool ("Ground", grounded);
 
+		/* 
+		 * If I am touching the wall set the vSpeed to 0 otherwise the fall animation will
+		 * play.
+		 */
 		if (!touchingWall) {
 			anim.SetFloat ("vSpeed", rb.velocity.y);
 		} else {
-			anim.SetFloat ("vSpeed", rb.velocity.y * -1);
+			anim.SetFloat ("vSpeed", 0);
 		}
 	}
 
@@ -159,10 +163,15 @@ public class SimpleControler : MonoBehaviour
 
 	public void Move(float hAxisValue, float vAxisValue, bool doJump, bool doDuck) {
 
+		// Create a variable to hold the y velocity of the Hero
 		float yVelocity;
 
+		/* 
+		 * If I am touching a wall then I am going to the the Hero's y velocity depending on
+		 * the value of the vertical axis i.e. vAxisValue, otherwise I am going to leave it
+		 * alone.
+		 */
 		if (touchingWall) {
-			
 			// Let's make sure we are facing the right way
 			if (hAxisValue > 0 && !facingRight) {
 				Flip ();
@@ -170,16 +179,25 @@ public class SimpleControler : MonoBehaviour
 				Flip ();
 			}
 
-			yVelocity = vAxisValue * maxSpeed * 1.0f;
+			// I'm multiplying by 0.5 so the the Hero climbs at half the speed it runs
+			yVelocity = vAxisValue * maxSpeed * 0.5f;
 
 		} else {
 			yVelocity = rb.velocity.y;
 
 		}
 
+		// Ok, let's set the velocity of the Hero to incorporate changes to it's y velocity. Note
+		// that I might change the Hero's velocity again below to incorporate changes to its x
+		// velocity 
 		rb.velocity = new Vector2 (rb.velocity.x, yVelocity); 
 
-		// The character can only move if grounded OR canMoveInAir is true
+		// I should be really playing some climbing animation here by doing something like
+		//		 anim.SetBool("Climbing", true);
+		//
+		// but I don't have a climbing animation
+
+		// The character can only move if grounded OR canMoveInAir is true OR touchingWall is true
 		if (grounded || canMoveInAir || touchingWall) {
 			
 			// Let's make sure we are facing the right way
@@ -269,6 +287,8 @@ public class SimpleControler : MonoBehaviour
 			 */
 			if (other.tag == "StickPlate") {
 				touchingWall = true;
+
+				// Disable gravity
 				rb.gravityScale = 0.0f;
 			}
 		}
@@ -291,6 +311,8 @@ public class SimpleControler : MonoBehaviour
 
 			if (other.tag == "StickPlate") {
 				touchingWall = false;
+
+				// Re-emable gravity
 				rb.gravityScale = 3.0f;
 			}
 		}
